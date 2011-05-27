@@ -26,7 +26,6 @@ cd ${OE_METADATA}/meta-angstrom
 git clone git://git.angstrom-distribution.org/meta-angstrom .
 git checkout master
 
-# Use my GIThub tree for the overlay for now.
 cd ${OE_METADATA}/meta-openpandora
-git clone git://github.com/djwillis/meta-openpandora.git .
+git clone git://github.com/openpandora/meta-openpandora.git .
 git checkout master
