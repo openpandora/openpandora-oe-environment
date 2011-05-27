@@ -1,0 +1,11 @@
+This is the general system build setup scripts for the OpenPandora device.
+This will help you setup an OpenEmbedded build environment.
+
+http://www.openpandora.org/
+
+Send pull requests to OpenPandora Firmware mailing list:
+                   
+                   firmware-dev@openpandora.org
+                   http://openpandora.org/cgi-bin/mailman/listinfo/firmware-dev
+                   
+Maintainers:       John Willis <John.Willis at distant-earth.com>
