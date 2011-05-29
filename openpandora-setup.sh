@@ -159,6 +159,10 @@ function oe_config()
 
     echo ""
     echo "Setup for ${CL_MACHINE} completed"
+    echo ""
+    echo "To use you MUST do '. ~/.oe/environment-openpandora'"
+    echo "and run 'bitbake something' INSIDE ${BUILDDIR} to build packages"
+    echo ""
 }
 
 ###############################################################################
