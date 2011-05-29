@@ -216,6 +216,7 @@ BBLAYERS = " \\
   ${OE_META_DIR}/openembedded-core/meta \\
   ${OE_META_DIR}/meta-angstrom \\
   ${OE_META_DIR}/meta-openembedded/meta-oe \\
+  ${OE_META_DIR}/meta-texasinstruments \\  
   ${OE_META_DIR}/meta-openpandora/ \\
   "
 _EOF

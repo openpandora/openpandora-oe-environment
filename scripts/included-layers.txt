@@ -3,4 +3,5 @@ bitbake,git://git.openembedded.net/bitbake,master,HEAD
 openembedded-core,git://git.openembedded.org/openembedded-core,master,HEAD
 meta-angstrom,git://git.angstrom-distribution.org/meta-angstrom,master,HEAD
 meta-openembedded,git://git.openembedded.net/meta-openembedded,master,HEAD
+meta-texasinstruments,git://git.angstrom-distribution.org/meta-texasinstruments,master,HEAD
 meta-openpandora,git://github.com/openpandora/meta-openpandora.git,master,HEAD
