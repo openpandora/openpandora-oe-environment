@@ -1,5 +1,3 @@
-#!/usr/bin/awk -f
-
 BEGIN { 
 	FS =",";
 	print "Configured layers:\n";
