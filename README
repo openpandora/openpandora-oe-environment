@@ -9,3 +9,26 @@ Send pull requests to OpenPandora Firmware mailing list:
                    http://openpandora.org/cgi-bin/mailman/listinfo/firmware-dev
                    
 Maintainers:       John Willis <John.Willis at distant-earth.com>
+
+To setup the environment and download required repositores run
+`./openpandora-setup.sh config`. It should take a little while.
+
+This will create ~/.oe/environment-openpandora which you can source to start
+building things.
+
+Navigate to the ./build directory, run `source ~/.oe/environment-openpandora`.
+Then we are ready to run bitbake. Simply run `bitbake zlib` to check if it
+works. It's very likely that you'll have to install a ton of utilities.
+Install these and retry.
+
+If you are on a 64-bit system you might get an error about missing 32-bit
+headers. If this is the only error you get use `touch conf/sanity.conf` (from
+the build directory) to get rid of it. You'll also need a 32-bit glibc to run
+the TI installers. On Arch Linux this package is called lib32-glibc.
+
+Now you can try to actually build an image. There is a few to choose from.
+
+pandora-core-image (no desktop environment or X11) is a good one to start with.
+Simply run `bitbake pandora-core-image`. You can also build pandora-xfce-image
+for a complete desktop environment. Nether of these are expected to work at the
+moment.
