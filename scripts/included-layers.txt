@@ -5,3 +5,4 @@ meta-angstrom,git://git.angstrom-distribution.org/meta-angstrom,master,HEAD
 meta-openembedded,git://git.openembedded.net/meta-openembedded,master,HEAD
 meta-texasinstruments,git://git.angstrom-distribution.org/meta-texasinstruments,master,HEAD
 meta-openpandora,git://github.com/openpandora/meta-openpandora.git,master,HEAD
+meta-openpandora-vendor,git://github.com/openpandora/meta-openpandora-vendor.git,master,HEAD
