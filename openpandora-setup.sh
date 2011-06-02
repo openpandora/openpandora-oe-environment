@@ -218,6 +218,7 @@ BBLAYERS = " \\
   ${OE_META_DIR}/meta-openembedded/meta-oe \\
   ${OE_META_DIR}/meta-texasinstruments \\  
   ${OE_META_DIR}/meta-openpandora \\
+  ${OE_META_DIR}/meta-openpandora-vendor \\
   "
 _EOF
     fi
