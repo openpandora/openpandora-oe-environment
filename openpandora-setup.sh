@@ -175,7 +175,7 @@ function update_oe()
     fi
 
     #manage meta-openembedded and meta-angstrom with layerman
-    ${OE_BASE}/scripts/layers.awk ${OE_BASE}/scripts/included-layers.txt
+    awk -f ${OE_BASE}/scripts/layers.awk ${OE_BASE}/scripts/included-layers.txt
 }
 
 
