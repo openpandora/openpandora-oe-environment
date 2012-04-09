@@ -1,8 +1,20 @@
 # Name,repo-uri,branch,rev
-bitbake,git://git.openembedded.org/bitbake,master,HEAD
-openembedded-core,git://git.openembedded.org/openembedded-core,master,HEAD
-meta-angstrom,git://git.angstrom-distribution.org/meta-angstrom,master,HEAD
-meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD
-meta-texasinstruments,git://git.angstrom-distribution.org/meta-texasinstruments,master,HEAD
+bitbake,git://github.com/openembedded/bitbake.git,master,HEAD
+meta-angstrom,git://github.com/Angstrom-distribution/meta-angstrom,master,HEAD
+meta-openembedded,git://github.com/openembedded/meta-oe.git,master,HEAD
+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD
+meta-ettus,git://github.com/balister/meta-ettus.git,master,HEAD
+meta-efikamx,git://github.com/kraj/meta-efikamx.git,master,HEAD
+meta-nslu2,git://github.com/kraj/meta-nslu2.git,master,HEAD
+meta-smartphone,http://git.shr-project.org/repo/meta-smartphone.git,master,HEAD
+meta-intel,git://git.yoctoproject.org/meta-intel,master,HEAD
+meta-xilinx,git://git.yoctoproject.org/meta-xilinx,master,HEAD
+meta-openpandora,git://github.com/openpandora/meta-openpandora.git,master,HEAD
+meta-handheld,git://git.openembedded.org/meta-handheld,master,HEAD
+meta-opie,git://github.com/bluelightning/meta-opie.git,master,HEAD
+meta-java,git://github.com/woglinde/meta-java.git,master,HEAD
+meta-mozilla,git://github.com/OSSystems/meta-mozilla.git,master,HEAD
+meta-mono,git://github.com/KokoFitClub/meta-mono.git,master,HEAD
+openembedded-core,git://github.com/openembedded/oe-core.git,master,HEAD
 meta-openpandora,git://github.com/openpandora/meta-openpandora.git,master,HEAD
 meta-openpandora-vendor,git://github.com/openpandora/meta-openpandora-vendor.git,master,HEAD
