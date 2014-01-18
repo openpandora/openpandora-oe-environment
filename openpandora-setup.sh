@@ -36,16 +36,18 @@ export BBFETCH2=True
 # If an env already exists, use it, otherwise generate it
 #--------------------------------------------------------------------------
 if [ -e ~/.oe/environment-openpandora ] ; then
-    . ~/.oe/environment-openpandora
+    source ~/.oe/environment-openpandora
+    echo ~/.oe/environment-openpandora found, using it.
+    echo Delete this file to regenerate settings.
 else
-
+    echo Creating new environment file.
     mkdir -p ~/.oe/
 
     #--------------------------------------------------------------------------
     # Specify distribution information
     #--------------------------------------------------------------------------
-    DISTRO="angstrom-2010.x"
-    DISTRO_DIRNAME=`echo $DISTRO | sed s#[.-]#_#g`
+    DISTRO="angstrom-v2013.06"
+    DISTRO_DIRNAME=`echo ${DISTRO} | sed s#[.-]#_#g`
 
     echo "export BBFETCH2=True" > ~/.oe/environment-openpandora
 
@@ -124,7 +126,7 @@ else
         expect -c 'spawn sudo dpkg-reconfigure -freadline dash; send "n\n"; interact;'
     fi
 
-    echo "There now is a sourceable script in ~/.oe/enviroment. You can do '. ~/.oe/environment-openpandora' and run 'bitbake something' without using $0 as wrapper"
+    echo "There now is a sourceable script in ~/.oe/. You can run 'source ~/.oe/environment-openpandora' and run 'bitbake something' without using $0 as wrapper"
 fi # if -e ~/.oe/environment-openpandora
 }
 
@@ -160,7 +162,7 @@ function oe_config()
     echo ""
     echo "Setup for ${CL_MACHINE} completed"
     echo ""
-    echo "To use you MUST do '. ~/.oe/environment-openpandora'"
+    echo "To use you MUST run 'source ~/.oe/environment-openpandora'"
     echo "and run 'bitbake something' INSIDE ${BUILDDIR} to build packages"
     echo ""
 }
@@ -189,7 +191,7 @@ function config_oe()
     #--------------------------------------------------------------------------
     case ${CL_MACHINE} in
         pandora|openpandora|omap3pandora|omap3-pandora)
-            MACHINE="omap3-pandora"
+            MACHINE="openpandora"
             ;;
         *)
             echo "Unknown machine ${CL_MACHINE}, passing it to OE directly"
@@ -206,24 +208,53 @@ function config_oe()
 	cat > ${OE_BUILD_DIR}/conf/bblayers.conf <<_EOF
 # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
 # changes incompatibly
-LCONF_VERSION = "4"
+LCONF_VERSION = "5"
 
 BBFILES ?= ""
 
-# Add your overlay location to BBLAYERS
+OE_META_DIR = "${OE_META_DIR}"
+
+# These layers hold recipe metadata not found in OE-core, but lack any machine or distro content
+BASELAYERS ?= " \\
+  \${OE_META_DIR}/meta-openembedded/meta-oe \\
+  \${OE_META_DIR}/meta-openembedded/meta-efl \\
+  \${OE_META_DIR}/meta-openembedded/meta-gpe \\
+  \${OE_META_DIR}/meta-openembedded/meta-gnome \\
+  \${OE_META_DIR}/meta-openembedded/meta-xfce \\
+  \${OE_META_DIR}/meta-openembedded/meta-initramfs \\
+  \${OE_META_DIR}/meta-openembedded/toolchain-layer \\
+  \${OE_META_DIR}/meta-openembedded/meta-multimedia \\
+  \${OE_META_DIR}/meta-openembedded/meta-networking \\
+  \${OE_META_DIR}/meta-openembedded/meta-webserver \\
+  \${OE_META_DIR}/meta-openembedded/meta-ruby \\
+  \${OE_META_DIR}/meta-openembedded/meta-systemd \\
+  \${OE_META_DIR}/meta-kde \\
+  \${OE_META_DIR}/meta-opie \\
+  \${OE_META_DIR}/meta-java \\
+  \${OE_META_DIR}/meta-browser \\
+  \${OE_META_DIR}/meta-mono \\
+  \${OE_META_DIR}/meta-ros \\
+"
+
+# These layers hold machine specific content, aka Board Support Packages
+BSPLAYERS ?= " \\
+  \${OE_META_DIR}/meta-ti \\
+  \${OE_META_DIR}/meta-openpandora \\
+"
+
+# Add your overlay location to EXTRALAYERS
 # Make sure to have a conf/layers.conf in there
+EXTRALAYERS ?= " \\
+  \${OE_META_DIR}/meta-openpandora-vendor \\
+"
+
 BBLAYERS = " \\
-  ${OE_META_DIR}/openembedded-core/meta \\
-  ${OE_META_DIR}/meta-angstrom \\
-  ${OE_META_DIR}/meta-openembedded/meta-oe \\
-  ${OE_META_DIR}/meta-openembedded/meta-efl \\
-  ${OE_META_DIR}/meta-openembedded/meta-gpe \\
-  ${OE_META_DIR}/meta-openembedded/meta-gnome \\
-  ${OE_META_DIR}/meta-openembedded/meta-xfce \\
-  ${OE_META_DIR}/meta-texasinstruments \\  
-  ${OE_META_DIR}/meta-openpandora \\
-  ${OE_META_DIR}/meta-openpandora-vendor \\
-  "
+  \${OE_META_DIR}/meta-angstrom \\
+  \${BASELAYERS} \\
+  \${BSPLAYERS} \\
+  \${EXTRALAYERS} \\
+  \${OE_META_DIR}/openembedded-core/meta \\
+"
 _EOF
     fi
 
@@ -271,8 +302,8 @@ IMAGE_FSTYPES += "tar.bz2"
 # Make use of SMP:
 #   PARALLEL_MAKE specifies how many concurrent compiler threads are spawned per bitbake process
 #   BB_NUMBER_THREADS specifies how many concurrent bitbake tasks will be run
-PARALLEL_MAKE     = "-j4"
-BB_NUMBER_THREADS = "4"
+PARALLEL_MAKE     = "-j5"
+BB_NUMBER_THREADS = "5"
 
 DISTRO   = "${DISTRO}"
 MACHINE ?= "${MACHINE}"
